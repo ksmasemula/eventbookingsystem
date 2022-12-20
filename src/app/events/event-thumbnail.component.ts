@@ -1,10 +1,11 @@
 import { style } from '@angular/animations';
 import { Component, Input } from '@angular/core';
+import { ToastrService } from '../common/toastr.service';
 
 @Component({
   selector: 'event-thumbnail',
   template: `
-    <div class="well hoverwell thumbnail">
+    <div class="well hoverwell thumbnail" (click)="handleThumbnail(event?.name)">
       <h2>{{event?.name}}</h2>
       <div>Date: {{event?.date}}</div>
       <div [ngSwitch]="event?.time">
@@ -33,4 +34,10 @@ import { Component, Input } from '@angular/core';
 
 export class EventThumbnailComponent {
   @Input() event: any;
+
+  constructor(private toastrService:ToastrService){}
+
+  handleThumbnail(message:string){
+    this.toastrService.success(message);
+  }
 }
