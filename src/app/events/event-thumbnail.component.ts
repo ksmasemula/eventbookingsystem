@@ -5,7 +5,7 @@ import { ToastrService } from '../common/toastr.service';
 @Component({
   selector: 'event-thumbnail',
   template: `
-    <div class="well hoverwell thumbnail" (click)="handleThumbnail(event?.name)">
+    <div class="well hoverwell thumbnail" [routerLink]="['/event',event?.id]">
       <h2>{{event?.name}}</h2>
       <div>Date: {{event?.date}}</div>
       <div [ngSwitch]="event?.time">
@@ -37,7 +37,4 @@ export class EventThumbnailComponent {
 
   constructor(private toastrService:ToastrService){}
 
-  handleThumbnail(message:string){
-    this.toastrService.success(message);
-  }
 }
