@@ -22,7 +22,7 @@ export class CreateEventComponent {
   cancel() {
     console.log('clicked cancel now navigate');
 
-    this.router.navigateByUrl('/events');
+    this.router.navigate(['/events']);
   }
 
 }
