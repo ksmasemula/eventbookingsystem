@@ -1,0 +1,21 @@
+<div>
+  <h1>Edit Your Profile </h1>
+  <hr>
+  <div class="col-md-4">
+    <form autocomplete="off" novalidate [formGroup]="profileForm" (ngSubmit)="updateUser(profileForm.value)">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <em *ngIf="profileForm.controls.firstName.invalid && profileForm.controls.firstName.dirty">Required</em>
+        <input id="firstName" [ngClass]="validateField(profileForm.controls.firstName)" type="text" formControlName="firstName" class="form-control" placeholder="First Name..." />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <em *ngIf="profileForm.controls.lastName.invalid && profileForm.controls.lastName.dirty">Required</em>
+        <input id="lastName" type="text" class="form-control" [ngClass]="validateField(profileForm.controls.lastName)"  formControlName="lastName"  placeholder="Last Name..." />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-default">Cancel</button>
+    </form>
+  </div>
+</div>

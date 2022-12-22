@@ -1,6 +1,7 @@
 import { style } from '@angular/animations';
 import { Component, Input } from '@angular/core';
 import { ToastrService } from '../common/toastr.service';
+import { IEvent } from './shared';
 
 @Component({
   selector: 'event-thumbnail',
@@ -33,7 +34,7 @@ import { ToastrService } from '../common/toastr.service';
 })
 
 export class EventThumbnailComponent {
-  @Input() event: any;
+  @Input() event!: IEvent;
 
   constructor(private toastrService:ToastrService){}
 
