@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ISession, restrictedWords } from "../shared";
 
 @Component({
+  selector:'create-session',
   templateUrl: './create-session.component.html',
   styles: [`
     em {float:right; color:#E05C65; padding-left:10px}
@@ -16,6 +17,8 @@ import { ISession, restrictedWords } from "../shared";
 
 export class CreateSessionComponent implements OnInit {
   newSessionForm!: FormGroup;
+  @Output() saveNewSession = new EventEmitter();
+  @Output() cancelAddSession = new EventEmitter();
 
   constructor(
     private frmBuilder: FormBuilder
@@ -32,8 +35,6 @@ export class CreateSessionComponent implements OnInit {
   }
 
   saveSession(formValues:any){
-    console.log(formValues);
-
     let session:ISession = {
       id:0,
       name:formValues.name,
@@ -43,8 +44,11 @@ export class CreateSessionComponent implements OnInit {
       abstract: formValues.abstract,
       voters: []
     }
-
-    console.log(session);
-
+   this.saveNewSession.emit(session);
   }
+
+  cancel(){
+    this.cancelAddSession.emit();
+  }
+
 }

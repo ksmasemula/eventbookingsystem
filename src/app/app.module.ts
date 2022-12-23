@@ -11,14 +11,16 @@ import {
   CreateEventComponent,
   EventRouteActivator,
   EventService,
-  EventListResolver
+  EventListResolver,
+  SessionListComponent,
+  CreateSessionComponent
 } from './events/index';
 import { ToastrService } from './common/toastr.service';
 import { Error404Component } from './errors/404.component';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { appRoutes } from './routes';
-import { CreateSessionComponent } from './events/event-details/create-session.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
     EventDetailsComponent,
     CreateEventComponent,
     CreateSessionComponent,
+    SessionListComponent,
     Error404Component,
     NavBarComponent
   ],

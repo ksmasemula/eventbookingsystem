@@ -1,26 +1,32 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IEvent } from './event.model';
 
 @Injectable()
 
-export class EventService{
+export class EventService {
 
-  getEvents(){
+
+  getEvents() {
     return EVENTS;
   }
 
-  getEvent(id:number):IEvent|boolean|undefined{
+  getEvent(id: number): IEvent | boolean | undefined {
     return EVENTS.find(event => event.id === id);
   }
 
-  saveEvent(event:IEvent){
+  saveEvent(event: IEvent) {
     event.id = EVENTS.length + 1;
     event.sessions = [];
     EVENTS.push(event);
   }
+
+  updateEvent(event: IEvent) {
+    let index = EVENTS.findIndex(x => x.id = event.id);
+    EVENTS[index] = event;
+  }
 }
 
-const EVENTS:IEvent[] = [
+const EVENTS: IEvent[] = [
   {
     id: 1,
     name: 'Angular Connect',
