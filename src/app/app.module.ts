@@ -13,7 +13,8 @@ import {
   EventService,
   EventListResolver,
   SessionListComponent,
-  CreateSessionComponent
+  CreateSessionComponent,
+  DurationPipe
 } from './events/index';
 import { ToastrService } from './common/toastr.service';
 import { Error404Component } from './errors/404.component';
@@ -34,7 +35,8 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
     SessionListComponent,
     Error404Component,
     NavBarComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
