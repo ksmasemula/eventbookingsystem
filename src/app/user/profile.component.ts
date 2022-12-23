@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
+import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    @Inject(TOASTR_TOKEN) private toastr:Toastr
   ) { }
 
   ngOnInit(): void {
@@ -35,13 +37,16 @@ export class ProfileComponent implements OnInit {
   }
 
   validateField(control:AbstractControl) {
-
-
     return control.invalid && control.dirty?'error':'';
   }
 
   updateUser(formValues: any) {
     this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
+    this.toastr.success('Profile Updated');
+    this.router.navigate(['events']);
+  }
+
+  cancel(){
     this.router.navigate(['events']);
   }
 }
