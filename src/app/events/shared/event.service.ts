@@ -1,9 +1,24 @@
 import { Injectable } from '@angular/core';
-import { IEvent } from './event.model';
+import { IEvent, ISession } from './event.model';
 
 @Injectable()
 
 export class EventService {
+  searchSessions(term: string){
+    term = term.toLocaleLowerCase();
+    let results:ISession[] = [];
+
+    EVENTS.forEach(event=>{
+      let matchingSessions = event.sessions.filter(session=> session.name.toLocaleLowerCase().indexOf(term) > -1);
+      matchingSessions = matchingSessions.map((session:any)=>{
+        session.eventId = event.id;
+        return session;
+      })
+
+      results  = results.concat(matchingSessions);
+    });
+    return results;
+  }
 
 
   getEvents() {
