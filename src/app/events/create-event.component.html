@@ -30,7 +30,7 @@
       <input (ngModel)="newEvent.price" name="price" required id="eventPrice" type="text" type="number"
         class="form-control" placeholder="event price..." />
     </div>
-    <div ngModelGroup="location">
+    <div ngModelGroup="location" #locationGrp="ngModelGroup" validateLocation>
       <div class="form-group">
         <label for="address">Event Location:</label>
         <input (ngModel)="newEvent.location?.address" name="address" id="address" type="text" class="form-control"
@@ -51,6 +51,7 @@
     <div class="form-group">
       <label for="onlineUrl">Online Url:</label>
       <input (ngModel)="newEvent.onlineUrl" name="onlineUrl" id="onlineUrl" type="text" class="form-control"
+        (change)="locationGrp.control.controls.address.updateValueAndValidity()"
         placeholder="Online Url..." />
     </div>
     <div class="form-group"

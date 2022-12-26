@@ -14,7 +14,9 @@ import {
   EventListResolver,
   SessionListComponent,
   CreateSessionComponent,
-  DurationPipe
+  DurationPipe,
+  UpvoteComponent,
+  locationValidator
 } from './events/index';
 import {  } from './common/toastr.service';
 import { Error404Component } from './errors/404.component';
@@ -46,7 +48,9 @@ declare let jQuery:any;
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent,
+    locationValidator
   ],
   imports: [
     BrowserModule,
