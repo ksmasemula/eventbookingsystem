@@ -16,10 +16,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   </div>
 
   `,
-  styleUrls: ['./upvote.component.css']
+  styleUrls: ['upvote.component.css']
 })
 
 export class UpvoteComponent {
+
   @Input() count?: number;
   @Input() set voted(val:boolean){
     val?this.iconColor = 'red':this.iconColor='white';

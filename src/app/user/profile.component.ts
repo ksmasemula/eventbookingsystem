@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    @Inject(TOASTR_TOKEN) private toastr:Toastr
+    @Inject(TOASTR_TOKEN) private toastr: Toastr
   ) { }
 
   ngOnInit(): void {
@@ -36,17 +36,29 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  validateField(control:AbstractControl) {
-    return control.invalid && control.dirty?'error':'';
+  validateField(control: AbstractControl) {
+    return control.invalid && control.dirty ? 'error' : '';
   }
 
   updateUser(formValues: any) {
-    this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-    this.toastr.success('Profile Updated');
+    this.authService.updateCurrentUser(formValues.firstName, formValues.lastName).subscribe(resp => {
+      if (!resp) {
+        this.toastr.error('Profile Update failed', 'Profile update error');
+        return;
+      }
+      this.toastr.success('Profile Updated', 'Update Successful');
+      this.router.navigate(['events']);
+    });
+  }
+
+  cancel() {
     this.router.navigate(['events']);
   }
 
-  cancel(){
-    this.router.navigate(['events']);
+  logout(){
+    this.authService.logout().subscribe(()=>{
+      this.toastr.info('User Logged out successffuly');
+      this.router.navigate(['/events']);
+    });
   }
 }

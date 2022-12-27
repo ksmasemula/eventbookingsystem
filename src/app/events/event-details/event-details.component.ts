@@ -27,8 +27,8 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.params.forEach((params: Params) => {
-      this.event = this.eventService.getEvent(+params['id']);
+    this.route.data.forEach((data) => {
+      this.event = data['event'];
       this.addMode = false;
       this.filterBy = 'all';
       this.sortBy = 'vote';
@@ -42,7 +42,7 @@ export class EventDetailsComponent implements OnInit {
   saveNewSession(session: ISession) {
     session.id = this.event.sessions.length + 1;
     this.event.sessions.push(session);
-    this.eventService.updateEvent(this.event);
+    this.eventService.saveEvent(this.event).subscribe();
     this.addMode = false;
   }
 
