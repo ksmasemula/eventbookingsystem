@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import {
   EventsListComponent,
   EventThumbnailComponent,
   EventDetailsComponent,
   CreateEventComponent,
-  EventRouteActivator,
+  EventResolver,
   EventService,
   EventListResolver,
   SessionListComponent,
@@ -56,13 +57,14 @@ declare let jQuery:any;
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
     EventService,
     {provide:TOASTR_TOKEN,useValue:toastr},
     {provide:JQ_TOKEN,useValue:jQuery},
-    EventRouteActivator,
+    EventResolver,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     EventListResolver
   ],
