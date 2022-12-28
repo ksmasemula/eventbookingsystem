@@ -59,8 +59,8 @@ describe('Sessions list Component - intergrated tests', () => {
     debugEl: DebugElement;
 
   beforeEach(() => {
-    mockAuthService = {isAuthenticated: () => true, currentUser: { userName: 'Joe' } };
-    mockVoterService = {userHasVoted: () => true };
+    mockAuthService = { isAuthenticated: () => true, currentUser: { userName: 'Joe' } };
+    mockVoterService = { userHasVoted: () => true };
     TestBed.configureTestingModule({
       declarations: [
         SessionListComponent,
