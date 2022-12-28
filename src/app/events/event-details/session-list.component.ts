@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/user/auth.service';
 import { ISession } from '../shared';
-import { voterService } from './voter.service';
+import { VoterService } from './voter.service';
 
 @Component({
   selector: 'session-list',
@@ -17,7 +17,7 @@ export class SessionListComponent implements OnChanges {
 
   constructor(
     public auth: AuthService,
-    private voterService: voterService
+    private voterService: VoterService
   ) { }
 
   ngOnChanges(): void {
