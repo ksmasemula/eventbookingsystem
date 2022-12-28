@@ -8,7 +8,7 @@ import { ISession } from "../shared";
   providedIn: 'root'
 })
 
-export class voterService {
+export class VoterService {
   constructor(
     private http:HttpClient
   ){}
@@ -20,6 +20,7 @@ export class voterService {
   }
 
   addVoter(eventId:number,session:ISession,voterName:string){
+    session.voters.push(voterName);
     let options ={headers:new HttpHeaders({'Content-Type':'application/json'})};
     let url =`/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
     this.http.post(url,{},options).pipe(catchError(this.handleError('AddVote'))).subscribe();
